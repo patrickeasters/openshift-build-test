@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora
 
 MAINTAINER Patrick Easters <patrick@easte.rs>
 

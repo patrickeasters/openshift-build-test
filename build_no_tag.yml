@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: build-with-tag
+spec:
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: 'git://github.com/patrickeasters/openshift-build-test.git'
+      ref: master
+  strategy:
+    type: Docker
+    dockerStrategy:
+      env:
+        - name: 'BUILD_LOGLEVEL'
+          value: '5'
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'openshift-build-test:latest'
+  nodeSelector: null
